@@ -58,7 +58,8 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['student'] = Student::find($id);
+        return view('student.edit', data);
     }
 
     /**
@@ -66,19 +67,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $student = new Student();
+        $student->fname = $request['fname'];
+        $student->lname = $request['lname'];
+        $student->email = $request['email'];
+        $student->phone = $request['phone'];
+        $student->address = $request['address'];
+        $student->city = $request['city'];
+        $student->province = $request['province'];
+        $student->zip = $request['zip'];
+        $student->birthday = $request['birthday'];
+
+        return redirect()->back();
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
+     * Update the specified resource in storage.
      */
     public function store(Request $request)
     {
@@ -93,6 +97,8 @@ class StudentController extends Controller
         $student->zip = $request['zip'];
         $student->birthday = $request['birthday'];
         $student->save();
+
+        return redirect()->to('student');
     }
 
     /**
@@ -102,6 +108,7 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $student->delete();
+        return redirect()->to('students');
     }
 
 }

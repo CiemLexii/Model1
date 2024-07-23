@@ -21,4 +21,20 @@ class Student extends Model
         'zip',
         'birthday',
     ];
+
+    // protected $guarded = []
+    protected $appends = ['fullname'];
+
+    public function getFullnameAttribute()
+    {
+        $birthday = $this->attributes['birthday'];
+        if($birthday){
+            return Carbon::parse($birthdate)->format('F d, Y,');
+        }
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(SubjectGrade::class, 'student_id');
+    }
 }

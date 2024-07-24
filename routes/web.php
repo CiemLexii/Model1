@@ -1,10 +1,10 @@
 <?php
-// namespace App\Http\Controller;
-use App\Http\Controller\StudentController;
+namespace App\Http\Controller;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('students', StudentCortroller::class);
+Route::resource('students', StudentController::class);

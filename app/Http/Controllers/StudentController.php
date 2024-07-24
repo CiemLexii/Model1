@@ -11,7 +11,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //return Student::all();
+        return Student::all();
         //return Student::where('province', 'Florida')->get();
         // return  Student::where('province', 'New York')
         // ->where('fname', 'Drake')->get();

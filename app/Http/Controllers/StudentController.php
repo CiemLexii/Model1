@@ -12,25 +12,19 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //return Student::all();
         return Student::all();
+        $data['students'] = Student::all();
+        return view('students.index', $data);
+       // return Student::all();
+
 
         //return Student::where('province', 'Florida')->get();
-    
-   
 
-        //return Student::where('province', 'New York')->first();
-
-        return Student::with('grades')->get();
-         //return Student::with('grades')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
         $student = new Student();
         $student->  fname=$request('fname');
         $student->  lname=$request('lname');
@@ -42,56 +36,66 @@ class StudentController extends Controller
         $student->  zip=$request('zip');
         $student->  dirthdate=$request('dirthdate');
         $student->save();
+        // $student = new Student();
+        // $student->fname=$request['fname'];
+        // $student->lname=$request['lname'];
+        // $student->email=$request['email'];
+        // $student->phone=$request['phone'];
+        // $student->address=$request['address'];
+        // $student->city=$request['city'];
+        // $student->province=$request['province'];
+        // $student->zip=$request['zip'];
+        // $student->dirthdate=$request['dirthdate'];
+        // $student->save();
+
+        return view('students.create');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-        $student = new Student();
-        $student->fname=$request['fname'];
-        $student->lname=$request['lname'];
-        $student->email=$request['email'];
-        $student->phone=$request['phone'];
-        $student->address=$request['address'];
-        $student->city=$request['city'];
-        $student->province=$request['province'];
+    public function store(Request $request){
         $student->zip=$request['zip'];
         $student->dirthdate=$request['dirthdate'];
         $student->save();
+
+        return redirect()->to('students');
     }
 
     
-    public function edit(string $id){
+    public function show(string $id)
+{
+        // $student = Student::find($id);
+        // return $student->fullname;
+        // $data['student'] = Student::find($id);
+        // return view('students.edit', $data);
+        
 
-    }
+        }
+
     
-    public function update(Request $request, string $id)
+   
+    public function edit(string $id)
     {
+
         //
-        $student = Student::find($id);
-        $student->fname=$request['fname'];
-        $student->lname=$request['lname'];
-        $student->email=$request['email'];
-        $student->phone=$request['phone'];
-        $student->address=$request['address'];
-        $student->city=$request['city'];
-        $student->province=$request['province'];
+        $data['student'] = Student::find($id);
+        return view('students.edit', $data);
+    }
+
+    
+    public function update(Request $request, string $id){
         $student->zip=$request['zip'];
         $student->dirthdate=$request['dirthdate'];
         $student->save();
+
+        //return redirect()->back;
+        return redirect()->to('students');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
-        //
         $student = Student::find($id);
         $student->delete();
+        return redirect()->to('students');
     }
 }

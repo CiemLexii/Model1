@@ -20,12 +20,12 @@ class StudentFactory extends Factory
             'fname' => fake()->firstName(),
             'lname' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
-            'phone' => fake()->phpneNumber(),
+            'phone' => fake()->phoneNumber(),
             'address' => fake()->address(),
             'city' => fake()->city(),
-            'province' =>fake()->province(),
-            'zip' => fake()->zip(),
-            'birthday' => fake()->dateTimeBetween('2000-01', '2010-12-30')->format('Y-m-d')
+            'province' => fake()->state(),
+            'zip' => fake()->postcode(),
+            'dirthdate' => fake()->dateTimeBetween('2000-01-01', '2010-12-30')->format('Y-m-d')
         ];
     }
 }

@@ -21,11 +21,10 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('zip')->nullable();
-            $table->string('birthdate')->nullable();
+            $table->date('dirthdate')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controller;
+
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 

@@ -8,12 +8,38 @@ use App\Models\SubjectGrade;
 
 class Student extends Model
 {
-public function getFullnameAttribute()
+    use HasFactory;
+    protected $table= "students";
+    protected $fillable = [
+        'fname',
+        'lname',
+        'email',
+        'phone',
+        'address',
+        'city',
+        'province',
+        'zip',
+        'dirthdate'
+    ];
+   // protected $guarded = [];
+
+   protected $appends = ['fullname'];
+//    protected $appends = ['fullname', 'birthday'];
+
+   public function getFullnameAttribute() 
    {
 
-    return $this->fname . ' '. $this->lname;
+   
 
    }
+
+//    public function getBirthdayAttribute()
+//    {
+//     $dirthdate = $this->attributes['dirthdate'];
+//     if($dirthdate){
+//         return Carbon::parse($dirthdate)->format('F d, Y');
+//     }
+//    }
 
    public function grades()
    {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+
 class StudentController extends Controller
 {
     /**
@@ -11,59 +12,77 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // return Student::all();
-        // return Student::where('province', 'Florida')->get();
-        // return  Student::where('province', 'New York')
-        // ->where('fname', 'Drake')->get();
-        // return  Student::where('province', 'New York')
-        // ->orwhere('province', 'Florida')
-        // ->orwhere('fname', 'Rhoda')->get();
-        // return Student::where('province', 'like', '%t%')->get();
-        // return Student::orderBy('fname')->get();
-        // return Student::orderBy('fname', 'desc')->get();
-        // return Student::limit(5)->get();
+        //return Student::all();
+        return Student::all();
 
-        // return Student::whereIn('id', [1,3,5,7,9,11,])->get();
+        //return Student::where('province', 'Florida')->get();
+    
+   
 
-        return Student::where('province', 'New York')->first();
         //return Student::where('province', 'New York')->first();
 
         return Student::with('grades')->get();
-    }
-    public function show(string $id)
-    {
-        // return Student::find($id);
-
-        // $student = Student::find($id);
-
-        // return $student->fname . ' '. $student->lname;
-        $student = Student::find($id);
-        return $student->fullname;
-
-        // $student = Student::find($id);
-        // return $student->fullname;
-
-
-        return student::with(['grades' => function($query)
-        {
-            return $query->where('grade', '>=', 90);
-        }])->get();
+         //return Student::with('grades')->get();
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for creating a new resource.
      */
-    public function edit(string $id)
+    public function create()
     {
         //
+        $student = new Student();
+        $student->  fname=$request('fname');
+        $student->  lname=$request('lname');
+        $student->  email=$request('email');
+        $student->  phone=$request('phone');
+        $student->  address=$request('address');
+        $student->  city=$request('city');
+        $student->  province=$request('state');
+        $student->  zip=$request('zip');
+        $student->  dirthdate=$request('dirthdate');
+        $student->save();
+
     }
 
     /**
-     * Update the specified resource in storage.
+     * Store a newly created resource in storage.
      */
+    public function store(Request $request)
+    {
+        //
+        $student = new Student();
+        $student->fname=$request['fname'];
+        $student->lname=$request['lname'];
+        $student->email=$request['email'];
+        $student->phone=$request['phone'];
+        $student->address=$request['address'];
+        $student->city=$request['city'];
+        $student->province=$request['province'];
+        $student->zip=$request['zip'];
+        $student->dirthdate=$request['dirthdate'];
+        $student->save();
+    }
+
+    
+    public function edit(string $id){
+
+    }
+    
     public function update(Request $request, string $id)
     {
         //
+        $student = Student::find($id);
+        $student->fname=$request['fname'];
+        $student->lname=$request['lname'];
+        $student->email=$request['email'];
+        $student->phone=$request['phone'];
+        $student->address=$request['address'];
+        $student->city=$request['city'];
+        $student->province=$request['province'];
+        $student->zip=$request['zip'];
+        $student->dirthdate=$request['dirthdate'];
+        $student->save();
     }
 
     /**
@@ -72,5 +91,7 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         //
+        $student = Student::find($id);
+        $student->delete();
     }
 }

@@ -25,7 +25,7 @@ class StudentFactory extends Factory
             'city' => fake()->city(),
             'province' => fake()->state(),
             'zip' => fake()->postcode(),
-            'dirthdate' => fake()->dateTimeBetween('2000-01-01', '2010-12-30')->format('Y-m-d')
+            'birthday' => fake()->dateTimeBetween('2000-01-01', '2010-12-30')->format('y-m-d'),
         ];
     }
 }

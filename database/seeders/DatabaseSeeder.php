@@ -8,21 +8,19 @@ use App\Models\SubjectGrade;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeders{
-public function run(): void
+class DatabaseSeeder extends Seeder
 {
-
-
-        // User::factory(10)->create();
-
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
         Student::factory()->count(30)->create();
-       // Student::factory()->count(30)->create();
         SubjectGrade::factory()->count(50)->create();
 
-      //  User::factory()->create([
-        //    'name' => 'Test User',
+        //User::factory()->create([
+          //  'name' => 'Test User',
           //  'email' => 'test@example.com',
         // ]);
     }
-
 }
